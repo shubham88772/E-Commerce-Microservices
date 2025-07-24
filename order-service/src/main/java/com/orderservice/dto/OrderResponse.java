@@ -11,6 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderResponse {
     private Long orderId;
-    private List<OrderItemDto> orderItems;
+    private List<OrderLineItemsDto> orderItems;
     private String status;
 }

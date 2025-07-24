@@ -1,4 +1,5 @@
 package com.orderservice.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -6,10 +7,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "orders")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Order {
 
     @Id
@@ -18,8 +19,7 @@ public class Order {
 
     private String orderNumber;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
-    private List<OrderItem> orderItems;
-
-
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id") // FK in OrderLineItems table
+    private List<OrderLineItems> orderLineItemsList;
 }

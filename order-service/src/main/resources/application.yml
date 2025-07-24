@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: order-service
+    cloud:
+      discovery:
+        enabled: true
   datasource:
     url: jdbc:mysql://localhost:3306/order_db
     username: root
@@ -21,5 +24,5 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-  instance:
-    prefer-ip-address: true
+    register-with-eureka: true
+    fetch-registry: true

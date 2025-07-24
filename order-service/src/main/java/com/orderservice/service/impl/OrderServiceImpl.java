@@ -2,7 +2,7 @@ package com.orderservice.service.impl;
 
 import com.orderservice.dto.OrderRequest;
 import com.orderservice.entity.Order;
-import com.orderservice.entity.OrderItem;
+import com.orderservice.entity.OrderLineItems;
 import com.orderservice.repository.OrderRepository;
 import com.orderservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -24,15 +24,13 @@ public class OrderServiceImpl implements OrderService {
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
 
-        List<OrderItem> orderItems = orderRequest.getOrderItems().stream()
-                .map(item -> {
-                    OrderItem orderItem = modelMapper.map(item, OrderItem.class);
-                    orderItem.setOrder(order);
-                    return orderItem;
-                })
+        List<OrderLineItems> orderLineItems = orderRequest.getOrderLineItemsList()
+                .stream()
+                .map(dto -> modelMapper.map(dto, OrderLineItems.class))
                 .toList();
 
-        order.setOrderItems(orderItems);
+        order.setOrderLineItemsList(orderLineItems);
+
         orderRepository.save(order);
 
         return "Order placed successfully!";

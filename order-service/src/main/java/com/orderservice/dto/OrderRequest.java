@@ -1,4 +1,5 @@
 package com.orderservice.dto;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -6,8 +7,8 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class OrderRequest {
-    private List<OrderItemDto> orderItems;
+    private List<OrderLineItemsDto> orderLineItemsList;
 }
